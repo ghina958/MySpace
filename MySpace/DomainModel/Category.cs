@@ -9,7 +9,6 @@ namespace MySpace.DomainModel
         public int Id { get; set; }
         public string? Name { get; set; }
 
-
         [ForeignKey("Space")]
         public int SpaceId { get; set; }
         public Space? Space { get; set; }
