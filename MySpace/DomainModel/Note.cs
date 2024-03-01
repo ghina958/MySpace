@@ -19,6 +19,7 @@ namespace MySpace.DomainModel
         [ForeignKey("Member")] //refernce who created
         public int MemberId { get; set; }
         public Member? Member { get; set; }
+        public ICollection<Files> Files { get; set; }
 
     }
 }

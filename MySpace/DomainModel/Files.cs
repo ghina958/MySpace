@@ -1,14 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MySpace.DomainModel
 {
-    public class File
+    public class Files
     {
+        [Key]
         public int Id { get; set; }
-       // [StringLength(maximumLength:)]
+
+        [MaxLength]
         public string Url { get; set; }
 
+        [ForeignKey("Note")]
         public int NoteId { get; set; }
-        public Note Note { get; set; }
+        public Note? Note { get; set; }
     }
 }
