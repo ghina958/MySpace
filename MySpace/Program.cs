@@ -1,5 +1,11 @@
+using Application.Mapper;
+using AutoMapper;
+using DataAccess;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MySpace.Data;
+using MySpace.Application.User;
+using MySpace.WebAPI.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,27 +15,29 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
+        b => b.MigrationsAssembly("DataAccess"));
     //UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddGrpc();
+builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
+builder.Services.AddMediatR(typeof(CreateUserRequest).Assembly);
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
+app.UseRouting();
+app.UseGrpcWeb(new GrpcWebOptions() { DefaultEnabled = true });
+app.MapGrpcService<UsersService>();
+app.MapGrpcService<CategoryService>();
+app.MapGrpcService<SpaceService>();
+app.MapGrpcService<NoteService>();
+app.MapGrpcService<MembersService>();
+app.MapGrpcService<FileService>();
+app.MapGet("/",
+    () =>
+        "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 
 app.MapControllers();
 

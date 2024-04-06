@@ -1,0 +1,13 @@
+syntax = "proto3";
+option csharp_namespace = "MySpace.WebAPI.Services";
+import "models/note_model.proto";
+package my_space;
+
+service Notes{
+	rpc CreateNote(CreateNoteRequest) returns (CreateNoteResponse);
+	rpc EditNote(EditNoteRequest) returns (EditNoteResponse);
+	rpc DeleteNote(DeleteNoteRequest) returns (DeleteNoteResponse);
+	rpc GetNoteById(GetNoteByIdRequest) returns (GetNoteByIdResponse);
+	rpc GetAll(GetAllNotesRequest) returns (GetAllNotesResponse);
+
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "MySpace.Application.Files";
+
+package my_space;
+
+message CreatFile{
+    int32  id =1;
+	string Url=2;	
+}
+message FileResponse {
+	int32  id =1;
+	string Url=2;
+	string created_at = 3;
+}
+
+message FileById{
+    int32  id =1;	
+}
+

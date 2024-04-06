@@ -1,0 +1,17 @@
+syntax = "proto3";
+option csharp_namespace = "MySpace.WebAPI.Services";
+import "models/space_model.proto";
+package my_space;
+
+service Spaces{
+
+	rpc CreateSpace(CreateSpaceRequest) returns (CreateSpaceResponse);
+	rpc EditSpace(EditSpaceRequest) returns (EditSpaceResponse);
+	rpc DeleteSpace(DeleteSpaceRequest) returns (DeleteSpaceResponse);
+
+	rpc GetAllSpaces(GetAllSpacesRequest) returns (GetAllSpacesResponse);
+	rpc GetSpaceById(GetSpaceByIdRequest) returns (GetSpaceByIdResponse);
+	rpc GetSpaceName(GetSpaceNameRequest) returns (GetSpaceNameResponse);
+
+
+}

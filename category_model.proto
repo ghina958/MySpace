@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option csharp_namespace = "MySpace.Application.Categoryy";
+
+package my_space;
+
+message CreateCategoryRequest {
+	int32  id =1;
+	string name=2;	
+}
+
+message CreateCategoryResponse {
+	int32  id =1;
+	string name=2;
+	string created_at = 3;
+}
+
+message GetByIdRequest {
+	int32  id =1;	
+}
+
+message GetByIdResponse {
+	int32  id =1;
+	string name=2;	
+}

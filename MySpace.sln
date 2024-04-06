@@ -3,7 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpace", "MySpace\MySpace.csproj", "{533B4229-68C9-493A-9A0C-574B3F7CEC6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "MySpace\WebAPI.csproj", "{533B4229-68C9-493A-9A0C-574B3F7CEC6D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{369E6608-BEE2-45C7-9F7D-CDA70504013F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{894EA798-AAAC-42DE-B054-426BA00755B3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{3442C7F3-B05B-472A-8B8F-CAFEE2F8EB46}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Protos", "Protos", "{F18B63C2-03B0-4574-8EA2-18F5044BFF4C}"
+	ProjectSection(SolutionItems) = preProject
+		protos\category_service.proto = protos\category_service.proto
+		protos\files_service.proto = protos\files_service.proto
+		protos\member_service.proto = protos\member_service.proto
+		protos\note_service.proto = protos\note_service.proto
+		protos\space_service.proto = protos\space_service.proto
+		protos\users_service.proto = protos\users_service.proto
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models", "models", "{61272F64-512B-4183-90D4-B3E8B333D5C5}"
+	ProjectSection(SolutionItems) = preProject
+		protos\models\category_model.proto = protos\models\category_model.proto
+		protos\models\files_model.proto = protos\models\files_model.proto
+		protos\models\member_model.proto = protos\models\member_model.proto
+		protos\models\note_model.proto = protos\models\note_model.proto
+		protos\models\space_model.proto = protos\models\space_model.proto
+		protos\models\users_model.proto = protos\models\users_model.proto
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +41,24 @@ Global
 		{533B4229-68C9-493A-9A0C-574B3F7CEC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{533B4229-68C9-493A-9A0C-574B3F7CEC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{533B4229-68C9-493A-9A0C-574B3F7CEC6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{369E6608-BEE2-45C7-9F7D-CDA70504013F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{369E6608-BEE2-45C7-9F7D-CDA70504013F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{369E6608-BEE2-45C7-9F7D-CDA70504013F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{369E6608-BEE2-45C7-9F7D-CDA70504013F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{894EA798-AAAC-42DE-B054-426BA00755B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{894EA798-AAAC-42DE-B054-426BA00755B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{894EA798-AAAC-42DE-B054-426BA00755B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{894EA798-AAAC-42DE-B054-426BA00755B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3442C7F3-B05B-472A-8B8F-CAFEE2F8EB46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3442C7F3-B05B-472A-8B8F-CAFEE2F8EB46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3442C7F3-B05B-472A-8B8F-CAFEE2F8EB46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3442C7F3-B05B-472A-8B8F-CAFEE2F8EB46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{61272F64-512B-4183-90D4-B3E8B333D5C5} = {F18B63C2-03B0-4574-8EA2-18F5044BFF4C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F56BF104-9B3E-4D5B-878B-23E2D55C8705}

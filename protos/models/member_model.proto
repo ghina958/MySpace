@@ -1,0 +1,64 @@
+syntax = "proto3";
+option csharp_namespace = "MySpace.Application.Member";
+import "models/space_model.proto";
+import "models/users_model.proto";
+package my_space;
+
+message CreateMemberRequest {
+	int32  id =1;
+	GetSpaceByIdResponse space =2;
+	GetUserByIdResponse user=3;
+	Role role=4;
+}
+message CreateMemberResponse {
+	int32  id =1;
+	GetSpaceByIdResponse space =2;
+	GetUserByIdResponse user=3;
+	Role role=4;
+	string created_at = 5;
+}
+
+message GetAllMembersRequest{
+	
+}
+message GetAllMembersResponse{
+	repeated GetMemberByIdResponse Member =1;
+}
+
+message GetMemberByIdRequest {
+	int32  id =1;	
+}
+
+message GetMemberByIdResponse {
+	int32  id =1;
+	GetSpaceByIdResponse space =2;
+	GetUserByIdResponse user=3;
+	Role role=4;
+	string created_at = 5;
+}
+
+message Permission {
+  // Define permission values
+  enum Value {
+    CREATE_NOTE = 0;
+    EDIT_NOTE = 1;
+    DELETE_NOTE = 2;
+    READ_NOTES = 3;
+    CREATE_CATEGORY = 4;
+    EDIT_CATEGORY = 5;
+    DELETE_CATEGORY = 6;
+    READ_CATEGORIES = 7;
+    ADD_MEMBER = 8;
+    DELETE_MEMBER = 9;
+    EDIT_MEMBER_ROLE = 10;
+    READ_MEMBERS = 11;
+  }
+}
+
+message Role {
+  // Define fields for Role
+  int32  id =1;
+  string name = 2;
+  int32 value =3;
+  repeated Permission.Value permissions = 4;
+}

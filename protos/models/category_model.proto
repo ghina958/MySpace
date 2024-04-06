@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+option csharp_namespace = "MySpace.Application.Category";
+
+import "models/space_model.proto";
+package my_space;
+
+message CreateCategoryRequest {
+	int32  id =1;
+	string name=2;	
+	GetSpaceByIdResponse space=3;
+
+}
+
+message CreateCategoryResponse {
+	int32  id =1;
+	string name=2;	
+	GetSpaceByIdResponse space=3;
+	string created_at = 4;
+	
+}
+message EditCategoryRequest {
+	int32  id =1;
+	string name=2;	
+	GetSpaceByIdResponse space=3;
+}
+
+message EditCategoryResponse {
+	int32  id =1;
+	string name=2;	
+	GetSpaceByIdResponse space=3;
+	string created_at = 4;
+}
+message DeleteCategoryRequest{
+	int32  id =1;
+}
+message DeleteCategoryResponse{
+	bool   success = 1;
+    string message = 2;
+}
+
+message GetAllCategoriesRequest{
+	
+}
+message GetAllCategoriesResponse{
+	repeated GetByIdResponse Category =1;
+}
+
+message GetByIdRequest {
+	int32  id =1;	
+}
+
+message GetByIdResponse {
+	int32  id =1;
+	string name=2;	
+	GetSpaceByIdResponse space=3;
+}
+

@@ -1,0 +1,15 @@
+syntax = "proto3";
+option csharp_namespace = "MySpace.WebAPI.Services";
+import "models/users_model.proto";
+package my_space;
+
+service Users {
+
+	rpc CreateUser(CreateUserRequest) returns(CreateUserResponse);
+	rpc EditUser(EditUserRequest)     returns(EditUserResponse);
+	rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+	
+	rpc ListUsers(GetAllUsersRequest)   returns(GetAllUsersResponse);
+	rpc GetUserById(GetUserByIdRequest)   returns(GetUserByIdResponse);
+
+}

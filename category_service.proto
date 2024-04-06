@@ -1,0 +1,12 @@
+syntax = "proto3";
+option csharp_namespace = "MySpace.WebAPI.Services";
+import "models/category_model.proto";
+package my_space;
+
+service Categories {
+
+	rpc CreateCategory(CreateCategoryRequest) returns(CreateCategoryResponse);
+	rpc GetByIdCategory(GetByIdRequest) returns(GetByIdResponse);
+	
+
+}

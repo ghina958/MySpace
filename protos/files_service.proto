@@ -1,0 +1,11 @@
+syntax = "proto3";
+option csharp_namespace = "MySpace.WebAPI.Services";
+import "models/files_model.proto";
+package my_space;
+
+service Files {
+
+	rpc CreateFile(CreatFile) returns(FileResponse);
+	rpc GetByIdFile(FileById) returns(FileResponse);
+	
+}

@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+option csharp_namespace = "MySpace.Application.Space";
+
+package my_space;
+
+message Space{
+    int32  id =1;
+	string name=2;	
+	string description=3;
+}
+
+
+message CreateSpaceRequest {
+	int32  id =1;
+	string name=2;	
+	string description=3;		
+}
+
+message CreateSpaceResponse {
+	int32  id =1;
+	string name=2;	
+	string description=3;
+	string created_at = 4;
+}
+
+message EditSpaceRequest {
+	int32  id =1;
+	string name=2;	
+	string description=3;	
+}
+message EditSpaceResponse {
+	int32  id =1;
+	string name=2;	
+	string description=3;	
+	string created_at = 4;
+}
+message DeleteSpaceRequest {
+	int32  id =1;	
+}
+message DeleteSpaceResponse{
+	bool   success = 1;
+    string message = 2;
+}
+message GetSpaceNameRequest {
+	int32  id =1;	
+}
+
+message GetSpaceNameResponse {
+	string name=1;	
+	string created_at = 2;
+}
+
+message GetSpaceByIdRequest {
+	int32  id =1;	
+}
+
+message GetSpaceByIdResponse {
+	int32  id =1;
+	string name=2;	
+	string description=3;
+	string updated_at = 4;
+}
+
+message GetAllSpacesRequest{
+	
+}
+message GetAllSpacesResponse{
+	repeated GetSpaceByIdResponse Space =1;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+option csharp_namespace = "MySpace.WebAPI.Services";
+import "models/member_model.proto";
+package my_space;
+
+service Members {
+
+	rpc CreateMember(CreateMemberRequest) returns(CreateMemberResponse);
+	rpc GetByIdMember(GetMemberByIdRequest) returns(GetMemberByIdResponse);
+	rpc GetAllMembers(GetAllMembersRequest) returns(GetAllMembersResponse);
+	
+}
