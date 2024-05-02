@@ -30,8 +30,8 @@ message EditNoteResponse {
 	int32  id =1;
 	string title=2;	
 	string description=3;	
-	int32 category_name = 4;
-	int32 creator_name = 5;
+	int32 category_id = 4;
+	int32 creator_id = 5;
 	string updated_at =6;
 }
 message DeleteNoteRequest{
@@ -49,8 +49,8 @@ message GetNoteByIdResponse {
 	int32  id =1;
 	string title=2;	
 	string description=3;	
-	int32 category_name = 4;
-	int32 creator_name = 5;
+	int32 category_id = 4;
+	int32 creator_id = 5;
 	string created_at =6;
 }
 
@@ -58,7 +58,7 @@ message GetAllNotesRequest{
 	
 }
 message GetAllNotesResponse{
-	repeated GetNoteByIdRequest Note =1;
+	repeated GetNoteByIdResponse Note =1;
 }
 
 

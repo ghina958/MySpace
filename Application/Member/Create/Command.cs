@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using DataAccess;
+using Grpc.Core;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace MySpace.Application.Member;
 public partial class CreateMemberRequest : IRequest<CreateMemberResponse>
@@ -17,12 +19,31 @@ public partial class CreateMemberRequest : IRequest<CreateMemberResponse>
         }
         public async Task<CreateMemberResponse> Handle(CreateMemberRequest request, CancellationToken cancellationToken)
         {
-            var member = _mapper.Map<Domain.Member>(request);
+            try
+            {
+                var user = await _dbContext.Users.FirstOrDefaultAsync(c => c.Id == request.UserId);
+                if (user == null)
+                {
+                    throw new RpcException(new Status(StatusCode.NotFound, "User not found."));
+                }
+                var space = await _dbContext.Spaces.FirstOrDefaultAsync(c => c.Id == request.SpaceId);
+                if (space == null)
+                {
+                    throw new RpcException(new Status(StatusCode.NotFound, "Space not found."));
 
-            await _dbContext.Members.AddAsync(member, cancellationToken);
-            await _dbContext.SaveChangesAsync(cancellationToken);
+                }
+                var member = _mapper.Map<Domain.Member>(request);
 
-            return _mapper.Map<CreateMemberResponse>(member);
+                await _dbContext.Members.AddAsync(member, cancellationToken);
+                await _dbContext.SaveChangesAsync(cancellationToken);
+
+                return _mapper.Map<CreateMemberResponse>(member);
+
+            }catch (Exception ex)
+            {
+                throw;
+            }
+            
 
         }
     }

@@ -1,0 +1,14 @@
+syntax = "proto3";
+option csharp_namespace = "MySpace.WebAPI.Services";
+import "models/attachment_model.proto";
+package my_space;
+
+service Attachments {
+
+	rpc CreateAttach(CreateAttachmentRequest) returns(AttachmentResponse);
+	rpc GetAttach(GetAttachRequest) returns(AttachmentResponse);
+
+	rpc ListAll(ListAllRequest) returns(ListAllResponse);
+	
+	
+}

@@ -1,20 +1,17 @@
 syntax = "proto3";
 option csharp_namespace = "MySpace.Application.Member";
-import "models/space_model.proto";
-import "models/users_model.proto";
 package my_space;
 
 message CreateMemberRequest {
-	int32  id =1;
-	GetSpaceByIdResponse space =2;
-	GetUserByIdResponse user=3;
-	Role role=4;
+	int32 space_id=1;
+	int32 user_id=2;
+	int32 role=3;
 }
 message CreateMemberResponse {
 	int32  id =1;
-	GetSpaceByIdResponse space =2;
-	GetUserByIdResponse user=3;
-	Role role=4;
+	int32 space_id=2;
+	int32 user_id=3;
+	ProtoKeyValuePair role=4;
 	string created_at = 5;
 }
 
@@ -31,8 +28,8 @@ message GetMemberByIdRequest {
 
 message GetMemberByIdResponse {
 	int32  id =1;
-	GetSpaceByIdResponse space =2;
-	GetUserByIdResponse user=3;
+	int32 space_id=2;
+	int32 user_id=3;
 	Role role=4;
 	string created_at = 5;
 }
@@ -61,4 +58,10 @@ message Role {
   string name = 2;
   int32 value =3;
   repeated Permission.Value permissions = 4;
+}
+
+message ProtoKeyValuePair{
+int32 key =1;
+string value=2;
+
 }

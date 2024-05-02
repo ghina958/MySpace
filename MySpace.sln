@@ -13,6 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Protos", "Protos", "{F18B63C2-03B0-4574-8EA2-18F5044BFF4C}"
 	ProjectSection(SolutionItems) = preProject
+		protos\attachment_service.proto = protos\attachment_service.proto
 		protos\category_service.proto = protos\category_service.proto
 		protos\files_service.proto = protos\files_service.proto
 		protos\member_service.proto = protos\member_service.proto
@@ -23,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Protos", "Protos", "{F18B63
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models", "models", "{61272F64-512B-4183-90D4-B3E8B333D5C5}"
 	ProjectSection(SolutionItems) = preProject
+		protos\models\attachment_model.proto = protos\models\attachment_model.proto
 		protos\models\category_model.proto = protos\models\category_model.proto
 		protos\models\files_model.proto = protos\models\files_model.proto
 		protos\models\member_model.proto = protos\models\member_model.proto

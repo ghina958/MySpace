@@ -21,14 +21,13 @@ public partial class GetNoteByIdRequest : IRequest<GetNoteByIdResponse>
         {
             try
             {
-                var note = await _dbContext.Notes.Include(c => c.Creator).Include(c => c.Category).FirstOrDefaultAsync(c => c.Id == request.Id);
-                if (note == null)
-                {
+                var note = await _dbContext.Notes.Include(c => c.Creator).Include(c => c.Category).FirstOrDefaultAsync(c => c.Id == request.Id)??
+               
                     throw new Exception("Note not found");
-                }
-                var noteReq =_mapper.Map<GetNoteByIdResponse>(note);
+             
+               return _mapper.Map<GetNoteByIdResponse>(note);
 
-                return noteReq;
+                
                
             }catch (Exception ex)
             {

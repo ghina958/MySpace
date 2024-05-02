@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option csharp_namespace = "MySpace.Application.Attachment";
+import "models/files_model.proto";
+import "models/note_model.proto";
+package my_space;
+
+message CreateAttachmentRequest {
+	int32  id =1;
+	int32 file_Id=2;
+	int32 note_Id =3;
+}
+
+message AttachmentResponse {
+	int32  id =1;
+	int32 file_Id=2;
+	int32 note_Id =3;
+	string created_at = 4;
+	
+}
+message GetAttachRequest{
+	int32 id =1;
+}
+
+message ListAllRequest{
+
+}
+message ListAllResponse{
+	repeated AttachmentResponse Attachment =1;
+
+}

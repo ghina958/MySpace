@@ -22,6 +22,12 @@ public partial class EditCategoryRequest : IRequest<EditCategoryResponse>
         {
             try
             {
+                var space = await _dbContext.Spaces.FirstOrDefaultAsync(m => m.Id == request.SpaceId);
+                if (space == null)
+                {
+                    throw new RpcException(new Status(StatusCode.NotFound, "Space not found."));
+
+                }
                 var exitingCategory = await _dbContext.Categories.FirstOrDefaultAsync(s => s.Id == request.Id);
                 if (exitingCategory == null)
                 {

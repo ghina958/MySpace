@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DataAccess;
 using Domain;
+using Grpc.Core;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +20,14 @@ public partial class CreateNoteRequest : IRequest<CreateNoteResponse>
         }
         public async Task<CreateNoteResponse> Handle(CreateNoteRequest request, CancellationToken cancellationToken)
         {
-                var note = _mapper.Map<Domain.Note>(request);
+            var category =await _dbContext.Categories.FirstOrDefaultAsync(c=>c.Id == request.CategoryId)??
+            throw new RpcException(new Status(StatusCode.NotFound, "Category not found."));
+          
+            var creator=await _dbContext.Members.FirstOrDefaultAsync(c=>c.Id==request.CreatorId) ??
+
+                throw new RpcException(new Status(StatusCode.NotFound, "Creator not found."));
+            
+            var note = _mapper.Map<Domain.Note>(request);
                
                 await _dbContext.Notes.AddAsync(note, cancellationToken);
                 await _dbContext.SaveChangesAsync(cancellationToken);

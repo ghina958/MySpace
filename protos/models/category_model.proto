@@ -6,29 +6,28 @@ import "models/space_model.proto";
 package my_space;
 
 message CreateCategoryRequest {
-	int32  id =1;
-	string name=2;	
-	GetSpaceByIdResponse space=3;
-
+	string name=1;	
+	int32 space_id=2;
 }
+
 
 message CreateCategoryResponse {
 	int32  id =1;
 	string name=2;	
-	GetSpaceByIdResponse space=3;
-	string created_at = 4;
-	
+	int32 space_id=3;
+	string created_at = 4;	
 }
+
 message EditCategoryRequest {
 	int32  id =1;
 	string name=2;	
-	GetSpaceByIdResponse space=3;
+	int32 space_id=3;
 }
 
 message EditCategoryResponse {
 	int32  id =1;
 	string name=2;	
-	GetSpaceByIdResponse space=3;
+	int32 space_id=3;
 	string created_at = 4;
 }
 message DeleteCategoryRequest{
@@ -53,6 +52,6 @@ message GetByIdRequest {
 message GetByIdResponse {
 	int32  id =1;
 	string name=2;	
-	GetSpaceByIdResponse space=3;
+	int32 space_id=3;
 }
 

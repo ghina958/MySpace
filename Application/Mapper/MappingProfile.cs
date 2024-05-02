@@ -35,7 +35,7 @@ public class MappingProfile : Profile
 
         #region Category
 
-        CreateMap<CreateCategoryrRequest, Category>();
+        CreateMap<CreateCategoryRequest, Category>();
         CreateMap<Category, CreateCategoryResponse>();
 
         CreateMap<EditCategoryRequest, Category>();
@@ -45,8 +45,8 @@ public class MappingProfile : Profile
         CreateMap<Category, DeleteCategoryResponse>();
 
         CreateMap<GetByIdRequest, Category > ();
-        CreateMap<Category, GetByIdResponse>()
-       .ForMember(dest => dest.Space, opt => opt.MapFrom(src => src.Space)); 
+        CreateMap<Category, GetByIdResponse>();
+       //.ForMember(dest => dest.Space, opt => opt.MapFrom(src => src.Space)); 
 
         CreateMap<GetAllCategoriesRequest, Category>();
         CreateMap<Category, GetAllCategoriesResponse>();
@@ -80,6 +80,7 @@ public class MappingProfile : Profile
 
         CreateMap<CreateNoteRequest, Domain.Note>();
         CreateMap<Domain.Note, CreateNoteResponse>();
+            //.ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category));
 
         CreateMap<EditNoteRequest, Domain.Note>();
         CreateMap<Domain.Note, EditNoteResponse>();
@@ -89,8 +90,6 @@ public class MappingProfile : Profile
 
         CreateMap<GetNoteByIdRequest, Domain.Note>();
         CreateMap<Domain.Note, GetNoteByIdResponse>();
-        //.ForMember(c => c.CategoryName, p => p.MapFrom(s => s.Category.Name))
-        //.ForMember(c => c.CreatorName, p => p.MapFrom(s => s.Creator.User.UserName));
 
         CreateMap<GetAllNotesRequest, Domain.Note>();
         CreateMap<Domain.Note, GetAllNotesResponse>();
@@ -98,7 +97,9 @@ public class MappingProfile : Profile
         #endregion
 
         #region member
-        CreateMap<CreateMemberRequest, Domain.Member>();
+        CreateMap<CreateMemberRequest, Domain.Member>()
+       .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role));
+
         CreateMap<Domain.Member, CreateMemberResponse>();
 
         CreateMap<GetAllMembersRequest, Domain.Member>();
@@ -106,7 +107,13 @@ public class MappingProfile : Profile
 
         CreateMap<GetMemberByIdRequest, Domain.Member>();
         CreateMap<Domain.Member, GetMemberByIdResponse>();
+
+        CreateMap<Role, ProtoKeyValuePair>().ConvertUsing(src => new ProtoKeyValuePair { Key = src.Value, Value = src.Name });
+
         #endregion
+
+
+
 
         CreateMap<CreatFile, Domain.File>();
         CreateMap<Domain.File, FileResponse>();
