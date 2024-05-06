@@ -11,7 +11,7 @@ service Spaces{
 
 	rpc GetAllSpaces(GetAllSpacesRequest) returns (GetAllSpacesResponse);
 	rpc GetSpaceById(GetSpaceByIdRequest) returns (GetSpaceByIdResponse);
-	rpc GetSpaceName(GetSpaceNameRequest) returns (GetSpaceNameResponse);
+	
 
 
 }

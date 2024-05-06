@@ -5,7 +5,6 @@ option csharp_namespace = "MySpace.Application.Files";
 package my_space;
 
 message CreatFile{
-    int32  id =1;
 	string Url=2;	
 }
 message FileResponse {

@@ -30,10 +30,6 @@ internal class SpaceService : Spaces.SpacesBase
     {
         return await _mediator.Send(request);
     }
-    public override async Task<GetSpaceNameResponse> GetSpaceName(GetSpaceNameRequest request, ServerCallContext context)
-    {
-        return await _mediator.Send(request);
-    }
 
     public override async Task<GetAllSpacesResponse> GetAllSpaces(GetAllSpacesRequest request, ServerCallContext context)
     {

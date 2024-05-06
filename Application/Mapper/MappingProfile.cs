@@ -6,6 +6,7 @@ using MySpace.Application.Space;
 using MySpace.Application.Note;
 using MySpace.Application.Member;
 using MySpace.Application.Files;
+using Domain.enums;
 
 namespace Application.Mapper;
 
@@ -71,8 +72,6 @@ public class MappingProfile : Profile
         CreateMap<GetSpaceByIdRequest, Domain.Space>();
         CreateMap<Domain.Space, GetSpaceByIdResponse>();
 
-        CreateMap<GetSpaceNameRequest, Domain.Space>();
-        CreateMap<Domain.Space, GetSpaceNameResponse>();
 
         #endregion 
 
@@ -109,7 +108,7 @@ public class MappingProfile : Profile
         CreateMap<Domain.Member, GetMemberByIdResponse>();
 
         CreateMap<Role, ProtoKeyValuePair>().ConvertUsing(src => new ProtoKeyValuePair { Key = src.Value, Value = src.Name });
-
+        CreateMap<int, Role>().ConstructUsing(src => Role.FromValue(src));
         #endregion
 
 

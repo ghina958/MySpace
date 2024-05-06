@@ -6,7 +6,6 @@ import "models/note_model.proto";
 package my_space;
 
 message CreateAttachmentRequest {
-	int32  id =1;
 	int32 file_Id=2;
 	int32 note_Id =3;
 }

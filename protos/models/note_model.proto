@@ -4,7 +4,6 @@ import "models/category_model.proto";
 package my_space;
 
 message CreateNoteRequest {
-	int32  id =1;
 	string title=2;	
 	string description=3;	
 	int32 category_id = 4;

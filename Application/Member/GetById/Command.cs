@@ -19,14 +19,13 @@ public partial class GetMemberByIdRequest : IRequest<GetMemberByIdResponse>
         public async Task<GetMemberByIdResponse> Handle(GetMemberByIdRequest request, CancellationToken cancellationToken)
         {
             var member = await _dbContext.Members
-                .Include(x => x.Space)
-                .Include(x => x.User)
-                .Include(x => x.Role)
+                 .Include(x => x.Space)
+                 .Include(x => x.User)
                 .FirstOrDefaultAsync(c => c.Id == request.Id, cancellationToken) ??
                 throw new Exception("member not found");
 
             return _mapper.Map<GetMemberByIdResponse>(member);
-
+            
         }
     }
 
