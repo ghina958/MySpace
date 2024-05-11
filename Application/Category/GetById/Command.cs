@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MySpace.Application.Category;
 
-public partial class GetByIdRequest : IRequest<GetByIdResponse>
+public partial class CategoryDataRequest : IRequest<OneCategoryData>
 {
-    public class Handler : IRequestHandler<GetByIdRequest, GetByIdResponse>
+    public class Handler : IRequestHandler<CategoryDataRequest, OneCategoryData>
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -16,8 +16,9 @@ public partial class GetByIdRequest : IRequest<GetByIdResponse>
             _dbContext = dbContext;
             _mapper = mapper;
         }
-        public async Task<GetByIdResponse> Handle(GetByIdRequest request, CancellationToken cancellationToken)
+        public async Task<OneCategoryData> Handle(CategoryDataRequest request, CancellationToken cancellationToken)
         {
+
             var category = await _dbContext.Categories.Include(c => c.Space).FirstOrDefaultAsync(c => c.Id ==request.Id, cancellationToken);
             if (category == null)
             {
@@ -25,7 +26,7 @@ public partial class GetByIdRequest : IRequest<GetByIdResponse>
                 throw new Exception("Category not found");
             }
             
-            var getCategoryRepo = _mapper.Map<GetByIdResponse>(category);
+            var getCategoryRepo = _mapper.Map<OneCategoryData>(category);
             return getCategoryRepo;
         }
     }

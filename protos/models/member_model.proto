@@ -16,6 +16,20 @@ message CreateMemberResponse {
 	ProtoKeyValuePair role=4;
 	string created_at = 5;
 }
+message EditMember{
+	int32 id =1;
+	int32 space_id=2;
+	int32 user_id=3;
+	int32 role=4;
+}
+
+message DeleteMemberRequest{
+	int32  id =1;
+}
+message DeleteMember{
+	bool   success = 1;
+    string message = 2;
+}
 
 message GetAllMembersRequest{
 	
@@ -30,8 +44,8 @@ message GetMemberByIdRequest {
 
 message GetMemberByIdResponse {
 	int32  id =1;
-	GetSpaceByIdResponse space_id=2;
-	GetUserByIdResponse user_id=3;
+	GetSpaceByIdResponse Space=2;
+	GetUserByIdResponse User=3;
 	ProtoKeyValuePair role=4;
 	string created_at = 5;
 }

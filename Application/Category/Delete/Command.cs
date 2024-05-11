@@ -3,9 +3,9 @@ using DataAccess;
 using MediatR;
 
 namespace MySpace.Application.Category;
-public partial class DeleteCategoryRequest : IRequest<DeleteCategoryResponse>
+public partial class DeleteCategoryRequest : IRequest<DeleteCategory>
 {
-    public class Handler : IRequestHandler<DeleteCategoryRequest, DeleteCategoryResponse>
+    public class Handler : IRequestHandler<DeleteCategoryRequest, DeleteCategory>
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -15,7 +15,7 @@ public partial class DeleteCategoryRequest : IRequest<DeleteCategoryResponse>
             _dbContext = dbContext;
             _mapper = mapper;
         }
-        public async Task<DeleteCategoryResponse> Handle(DeleteCategoryRequest request, CancellationToken cancellationToken)
+        public async Task<DeleteCategory> Handle(DeleteCategoryRequest request, CancellationToken cancellationToken)
         {
             try
             {
@@ -27,7 +27,7 @@ public partial class DeleteCategoryRequest : IRequest<DeleteCategoryResponse>
                 }
                 _dbContext.Categories.Remove(ReqCategory);
                 await _dbContext.SaveChangesAsync(cancellationToken);
-                return new DeleteCategoryResponse
+                return new DeleteCategory
                 {
                     Success = true,
                     Message = "User deleted successfully"
@@ -38,7 +38,7 @@ public partial class DeleteCategoryRequest : IRequest<DeleteCategoryResponse>
             catch (Exception ex) 
             {
 
-                return new DeleteCategoryResponse
+                return new DeleteCategory
                 {
                     Success = false,
                     Message = "User deleted failed"

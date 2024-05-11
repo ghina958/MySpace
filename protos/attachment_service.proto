@@ -5,10 +5,12 @@ package my_space;
 
 service Attachments {
 
-	rpc CreateAttach(CreateAttachmentRequest) returns(AttachmentResponse);
-	rpc GetAttach(GetAttachRequest) returns(AttachmentResponse);
+	rpc Create(NewAttachment) returns(NewAttachmentData);
+	rpc Edit(EditAttachmentRequest) returns(NewAttachmentData);
+	rpc Delete(DeleteAttachmentRequest) returns(DeleteAttachmentData);
 
-	rpc ListAll(ListAllRequest) returns(ListAllResponse);
+	rpc GetById(AttachDataRequest) returns(AttachmentData);
+	rpc List(ListAttachmentsRequest) returns(ListAttachments);
 	
 	
 }

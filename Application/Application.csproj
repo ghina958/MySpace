@@ -33,8 +33,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Note\Edit\" />
-	  <Folder Include="Note\Delete\" />
 	  <Folder Include="User\Create\" />
 	</ItemGroup>
 

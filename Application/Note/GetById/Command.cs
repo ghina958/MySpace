@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MySpace.Application.Note;
 
-public partial class GetNoteByIdRequest : IRequest<GetNoteByIdResponse>
+public partial class NoteDataRequest : IRequest<NoteData>
 {
-    public class Handler : IRequestHandler<GetNoteByIdRequest, GetNoteByIdResponse>
+    public class Handler : IRequestHandler<NoteDataRequest, NoteData>
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -17,23 +17,13 @@ public partial class GetNoteByIdRequest : IRequest<GetNoteByIdResponse>
             _dbContext = dbContext;
             _mapper = mapper;
         }
-        public async Task<GetNoteByIdResponse> Handle(GetNoteByIdRequest request, CancellationToken cancellationToken)
-        {
-            try
-            {
-                var note = await _dbContext.Notes.Include(c => c.Creator).Include(c => c.Category).FirstOrDefaultAsync(c => c.Id == request.Id)??
-               
-                    throw new Exception("Note not found");
+        public async Task<NoteData> Handle(NoteDataRequest request, CancellationToken cancellationToken)
+        {           
+                var note = await _dbContext.Notes.Include(c => c.Category).Include(c => c.Creator).FirstOrDefaultAsync(c => c.Id == request.Id)??
+                throw new Exception("Note not found");
              
-               return _mapper.Map<GetNoteByIdResponse>(note);
-
-                
-               
-            }catch (Exception ex)
-            {
-                throw ;
-
-            }
+               return _mapper.Map<NoteData>(note);
+   
         }
     }
 

@@ -4,9 +4,9 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace MySpace.Application.Note;
-public partial class GetAllNotesRequest : IRequest<GetAllNotesResponse>
+public partial class ListNotesRequest : IRequest<ListNotes>
 {
-    public class Handler : IRequestHandler<GetAllNotesRequest, GetAllNotesResponse>
+    public class Handler : IRequestHandler<ListNotesRequest, ListNotes>
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -16,19 +16,16 @@ public partial class GetAllNotesRequest : IRequest<GetAllNotesResponse>
             _dbContext = dbContext;
             _mapper = mapper;
         }
-        public async Task<GetAllNotesResponse> Handle(GetAllNotesRequest request, CancellationToken cancellationToken)
+        public async Task<ListNotes> Handle(ListNotesRequest request, CancellationToken cancellationToken)
         {
-
             var notes = await _dbContext.Notes.
                 Include(c => c.Category).
                 Include(e => e.Creator).ToListAsync();
-           return new GetAllNotesResponse()
+           return new ListNotes()
             {
-                Note = { _mapper.Map<List<GetNoteByIdResponse>>(notes) }
+                Note = { _mapper.Map<List<NoteData>>(notes) }
 
             };
-
-            //return await Task.FromResult(response);
 
         }
     }

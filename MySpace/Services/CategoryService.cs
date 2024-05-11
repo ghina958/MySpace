@@ -11,24 +11,24 @@ internal class CategoryService : Categories.CategoriesBase
     {
         _mediator = mediator;
     }
-    //public override async Task<CreateCategoryResponse> CreateCategory(CreateCategoryRequest request, ServerCallContext context)
-    //{
-    //    return await _mediator.Send(request);
-    //}
-    public override async Task<GetByIdResponse> GetByIdCategory(GetByIdRequest request, ServerCallContext context)
+    public override async Task<CategoryData> Create(NewCategory request, ServerCallContext context)
+    {
+        return await _mediator.Send(request);
+    }
+    public override async Task<OneCategoryData> GetById(CategoryDataRequest request, ServerCallContext context)
     {
         return await _mediator.Send(request);
     }
 
-    public override async Task<EditCategoryResponse> EditCategory(EditCategoryRequest request, ServerCallContext context)
+    public override async Task<CategoryData> Edit(EditCategory request, ServerCallContext context)
     {
         return await _mediator.Send(request);
     }
-    public override async Task<DeleteCategoryResponse> DeleteCategory(DeleteCategoryRequest request, ServerCallContext context)
+    public override async Task<DeleteCategory> Delete(DeleteCategoryRequest request, ServerCallContext context)
     {
         return await _mediator.Send(request);
     }
-    public override async Task<GetAllCategoriesResponse> ListAll(GetAllCategoriesRequest request, ServerCallContext context)
+    public override async Task<ListCategories> ListAll(ListCategoriesRequest request, ServerCallContext context)
     {
         return await _mediator.Send(request);
     }

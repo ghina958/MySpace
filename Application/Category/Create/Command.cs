@@ -5,9 +5,9 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace MySpace.Application.Category;
-public partial class CreateCategoryRequest : IRequest<CreateCategoryResponse>
+public partial class NewCategory : IRequest<CategoryData>
 {
-    public class Handler : IRequestHandler<CreateCategoryRequest, CreateCategoryResponse>
+    public class Handler : IRequestHandler<NewCategory, CategoryData>
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -17,7 +17,7 @@ public partial class CreateCategoryRequest : IRequest<CreateCategoryResponse>
             _dbContext = dbContext;
             _mapper = mapper;
         }
-        public async Task<CreateCategoryResponse> Handle(CreateCategoryRequest request, CancellationToken cancellationToken)
+        public async Task<CategoryData> Handle(NewCategory request, CancellationToken cancellationToken)
         {
             try
             {
@@ -30,7 +30,7 @@ public partial class CreateCategoryRequest : IRequest<CreateCategoryResponse>
                 var category = _mapper.Map<Domain.Category>(request);
                 await _dbContext.Categories.AddAsync(category, cancellationToken);
                 await _dbContext.SaveChangesAsync(cancellationToken);
-                return _mapper.Map<CreateCategoryResponse>(category);
+                return _mapper.Map<CategoryData>(category);
 
             }
             catch (Exception ex)

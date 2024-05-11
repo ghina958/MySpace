@@ -3,7 +3,6 @@ using DataAccess;
 using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MySpace.Application.Category;
 
 namespace MySpace.Application.Member;
 public partial class GetAllMembersRequest : IRequest<GetAllMembersResponse>

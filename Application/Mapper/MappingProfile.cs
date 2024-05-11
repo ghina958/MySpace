@@ -7,6 +7,7 @@ using MySpace.Application.Note;
 using MySpace.Application.Member;
 using MySpace.Application.Files;
 using Domain.enums;
+using MySpace.Application.Attachment;
 
 namespace Application.Mapper;
 
@@ -36,21 +37,19 @@ public class MappingProfile : Profile
 
         #region Category
 
-        CreateMap<CreateCategoryRequest, Category>();
-        CreateMap<Category, CreateCategoryResponse>();
+        CreateMap<NewCategory, Category>();
+        CreateMap<Category, CategoryData>();
 
-        CreateMap<EditCategoryRequest, Category>();
-        CreateMap<Category, EditCategoryResponse>();
-
+        CreateMap<EditCategory, Category>();
+       
         CreateMap<DeleteCategoryRequest, Category>();
-        CreateMap<Category, DeleteCategoryResponse>();
+        CreateMap<Category, DeleteCategory>();
 
-        CreateMap<GetByIdRequest, Category > ();
-        CreateMap<Category, GetByIdResponse>();
-       //.ForMember(dest => dest.Space, opt => opt.MapFrom(src => src.Space)); 
-
-        CreateMap<GetAllCategoriesRequest, Category>();
-        CreateMap<Category, GetAllCategoriesResponse>();
+        CreateMap<CategoryDataRequest, Category > ();
+        CreateMap<Category, OneCategoryData>();
+     
+        CreateMap<ListCategoriesRequest, Category>();
+        CreateMap<Category, ListCategories>();
 
         #endregion
 
@@ -77,29 +76,33 @@ public class MappingProfile : Profile
 
         #region Note
 
-        CreateMap<CreateNoteRequest, Domain.Note>();
-        CreateMap<Domain.Note, CreateNoteResponse>();
+        CreateMap<NewNoteReq, Domain.Note>();
+        CreateMap<Domain.Note, NewNoteData>();
             //.ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category));
 
-        CreateMap<EditNoteRequest, Domain.Note>();
-        CreateMap<Domain.Note, EditNoteResponse>();
+        CreateMap<EditNote, Domain.Note>();
+       
         
         CreateMap<DeleteNoteRequest, Domain.Note>();
-        CreateMap<Domain.Note, DeleteNoteResponse>();
+        CreateMap<Domain.Note, DeleteNote>();
 
-        CreateMap<GetNoteByIdRequest, Domain.Note>();
-        CreateMap<Domain.Note, GetNoteByIdResponse>();
+        CreateMap<NoteDataRequest, Domain.Note>();
+        CreateMap<Domain.Note, NoteData>();
 
-        CreateMap<GetAllNotesRequest, Domain.Note>();
-        CreateMap<Domain.Note, GetAllNotesResponse>();
+        CreateMap<ListNotesRequest, Domain.Note>();
+        CreateMap<Domain.Note, ListNotes>();
 
         #endregion
 
         #region member
-        CreateMap<CreateMemberRequest, Domain.Member>()
-       .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role));
-
+        CreateMap<CreateMemberRequest, Domain.Member>();
+       //.ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role));
         CreateMap<Domain.Member, CreateMemberResponse>();
+
+        CreateMap<EditMember, Domain.Member>();
+
+        CreateMap<DeleteMemberRequest, Domain.Member>();
+        CreateMap<Domain.Member, DeleteMember>();
 
         CreateMap<GetAllMembersRequest, Domain.Member>();
         CreateMap<Domain.Member, GetAllMembersResponse>();
@@ -111,15 +114,39 @@ public class MappingProfile : Profile
         CreateMap<int, Role>().ConstructUsing(src => Role.FromValue(src));
         #endregion
 
+        #region attachment
+
+        CreateMap<NewAttachment, Domain.Attachment>();
+        CreateMap<Domain.Attachment, NewAttachmentData>();
+
+        CreateMap<EditAttachmentRequest, Domain.Attachment>();
+
+        CreateMap<DeleteAttachmentRequest, Domain.Attachment>();
+        CreateMap<Domain.Attachment, DeleteAttachmentData>();
+
+        CreateMap<AttachDataRequest, Domain.Attachment>();
+        CreateMap<Domain.Attachment, AttachmentData>();
+        
+        CreateMap<ListAttachmentsRequest, Domain.Attachment>();
+        CreateMap<Domain.Attachment, ListAttachments>();
+        #endregion
+
+        #region Files
+
+        CreateMap<NewFile, Domain.File>();
+        CreateMap<Domain.File, FileData>();
+
+        CreateMap<EditFileData, Domain.File>();
+
+        CreateMap<DeleteFileDataRequest, Domain.File>();
+        CreateMap<Domain.File, DeleteFileData>();
+
+        CreateMap<FileDataRequest, Domain.File>();
 
 
-
-        CreateMap<CreatFile, Domain.File>();
-        CreateMap<Domain.File, FileResponse>();
-
-        CreateMap<FileById, Domain.File>();
-        CreateMap<Domain.File, FileResponse>();
-
+        CreateMap<ListFileDataRequest, Domain.File>();
+        CreateMap<Domain.File, ListFilesData>();
+        #endregion
 
     }
 }

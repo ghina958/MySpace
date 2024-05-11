@@ -6,6 +6,8 @@ package my_space;
 service Members {
 
 	rpc CreateMember(CreateMemberRequest) returns(CreateMemberResponse);
+	rpc Edit(EditMember) returns(CreateMemberResponse);
+	rpc Delete(DeleteMemberRequest) returns(DeleteMember);
 	rpc GetByIdMember(GetMemberByIdRequest) returns(GetMemberByIdResponse);
 	rpc GetAllMembers(GetAllMembersRequest) returns(GetAllMembersResponse);
 	

@@ -4,10 +4,10 @@ import "models/note_model.proto";
 package my_space;
 
 service Notes{
-	rpc CreateNote(CreateNoteRequest) returns (CreateNoteResponse);
-	rpc EditNote(EditNoteRequest) returns (EditNoteResponse);
-	rpc DeleteNote(DeleteNoteRequest) returns (DeleteNoteResponse);
-	rpc GetNoteById(GetNoteByIdRequest) returns (GetNoteByIdResponse);
-	rpc GetAll(GetAllNotesRequest) returns (GetAllNotesResponse);
+	rpc Create(NewNoteReq) returns (NewNoteData);
+	rpc Edit(EditNote) returns (NewNoteData);
+	rpc Delete(DeleteNoteRequest) returns (DeleteNote);
+	rpc ById(NoteDataRequest) returns (NoteData);
+	rpc List(ListNotesRequest) returns (ListNotes);
 
 }

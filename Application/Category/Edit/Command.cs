@@ -3,13 +3,12 @@ using DataAccess;
 using Grpc.Core;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
 
 namespace MySpace.Application.Category;
 
-public partial class EditCategoryRequest : IRequest<EditCategoryResponse>
+public partial class EditCategory : IRequest<CategoryData>
 {
-    public class Handler : IRequestHandler<EditCategoryRequest, EditCategoryResponse>
+    public class Handler : IRequestHandler<EditCategory, CategoryData>
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -18,7 +17,7 @@ public partial class EditCategoryRequest : IRequest<EditCategoryResponse>
             _dbContext = dbContext;
             _mapper = mapper;
         }
-        public async Task<EditCategoryResponse> Handle(EditCategoryRequest request, CancellationToken cancellationToken)
+        public async Task<CategoryData> Handle(EditCategory request, CancellationToken cancellationToken)
         {
             try
             {
@@ -38,7 +37,7 @@ public partial class EditCategoryRequest : IRequest<EditCategoryResponse>
                 {
                     _mapper.Map(request, exitingCategory);
                     await _dbContext.SaveChangesAsync(cancellationToken);
-                    return _mapper.Map<EditCategoryResponse>(exitingCategory);
+                    return _mapper.Map<CategoryData>(exitingCategory);
 
                 }
             }

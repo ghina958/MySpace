@@ -12,12 +12,24 @@ internal class NoteService : Notes.NotesBase
         _mediator = mediator;
     }
 
-    public override Task<CreateNoteResponse> CreateNote(CreateNoteRequest request, ServerCallContext context)
+    public override Task<NewNoteData> Create(NewNoteReq request, ServerCallContext context)
+    {
+        return _mediator.Send(request);
+    }
+    public override Task<NewNoteData> Edit(EditNote request, ServerCallContext context)
+    {
+        return _mediator.Send(request);
+    }
+    public override Task<DeleteNote> Delete(DeleteNoteRequest request, ServerCallContext context)
     {
         return _mediator.Send(request);
     }
 
-    public override Task<GetNoteByIdResponse> GetNoteById(GetNoteByIdRequest request, ServerCallContext context)
+    public override Task<NoteData> ById(NoteDataRequest request, ServerCallContext context)
+    {
+        return _mediator.Send(request);
+    }
+    public override Task<ListNotes> List(ListNotesRequest request, ServerCallContext context)
     {
         return _mediator.Send(request);
     }

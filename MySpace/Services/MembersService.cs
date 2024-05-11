@@ -11,6 +11,8 @@ internal class MembersService : Members.MembersBase
     {
         _mediator = mediator;
     }
+
+
     public override async Task<CreateMemberResponse> CreateMember(CreateMemberRequest request, ServerCallContext context)
     {
         return await _mediator.Send(request);
@@ -20,6 +22,14 @@ internal class MembersService : Members.MembersBase
         return await _mediator.Send(request);
     }
     public override async Task<GetMemberByIdResponse> GetByIdMember(GetMemberByIdRequest request, ServerCallContext context)
+    {
+        return await _mediator.Send(request);
+    }
+    public override async Task<DeleteMember> Delete(DeleteMemberRequest request, ServerCallContext context)
+    {
+        return await _mediator.Send(request);
+    }
+    public override async Task<CreateMemberResponse> Edit(EditMember request, ServerCallContext context)
     {
         return await _mediator.Send(request);
     }

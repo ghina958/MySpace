@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MySpace.Application.Category;
 
-public partial class GetAllCategoriesRequest : IRequest<GetAllCategoriesResponse>
+public partial class ListCategoriesRequest : IRequest<ListCategories>
 {
-    public class Handler : IRequestHandler<GetAllCategoriesRequest, GetAllCategoriesResponse>
+    public class Handler : IRequestHandler<ListCategoriesRequest, ListCategories>
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -17,17 +17,17 @@ public partial class GetAllCategoriesRequest : IRequest<GetAllCategoriesResponse
             _dbContext = dbContext;
             _mapper = mapper;
         }
-        public async Task<GetAllCategoriesResponse> Handle(GetAllCategoriesRequest request, CancellationToken cancellationToken)
+        public async Task<ListCategories> Handle(ListCategoriesRequest request, CancellationToken cancellationToken)
         {
 
             try
             {
-                var response = new GetAllCategoriesResponse();
+                var response = new ListCategories();
                 var category = await _dbContext.Categories.Include(c => c.Space).ToListAsync();
                
                     foreach (var item in category)
                     {
-                        var mapp = _mapper.Map<GetByIdResponse>(item);
+                        var mapp = _mapper.Map<OneCategoryData>(item);
                         response.Category.Add(mapp);
                     }
                     return await Task.FromResult(response);

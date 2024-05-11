@@ -6,9 +6,9 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace MySpace.Application.Note;
-public partial class CreateNoteRequest : IRequest<CreateNoteResponse>
+public partial class NewNoteReq : IRequest<NewNoteData>
 {
-    public class Handler : IRequestHandler<CreateNoteRequest, CreateNoteResponse>
+    public class Handler : IRequestHandler<NewNoteReq, NewNoteData>
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -18,7 +18,7 @@ public partial class CreateNoteRequest : IRequest<CreateNoteResponse>
             _dbContext = dbContext;
             _mapper = mapper;
         }
-        public async Task<CreateNoteResponse> Handle(CreateNoteRequest request, CancellationToken cancellationToken)
+        public async Task<NewNoteData> Handle(NewNoteReq request, CancellationToken cancellationToken)
         {
             var category =await _dbContext.Categories.FirstOrDefaultAsync(c=>c.Id == request.CategoryId)??
             throw new RpcException(new Status(StatusCode.NotFound, "Category not found."));
@@ -32,7 +32,7 @@ public partial class CreateNoteRequest : IRequest<CreateNoteResponse>
                 await _dbContext.Notes.AddAsync(note, cancellationToken);
                 await _dbContext.SaveChangesAsync(cancellationToken);
               
-                return _mapper.Map<CreateNoteResponse>(note);
+                return _mapper.Map<NewNoteData>(note);
             
         }
     }

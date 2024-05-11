@@ -1,30 +1,44 @@
 syntax = "proto3";
-
 option csharp_namespace = "MySpace.Application.Attachment";
 import "models/files_model.proto";
 import "models/note_model.proto";
 package my_space;
 
-message CreateAttachmentRequest {
-	int32 file_Id=2;
-	int32 note_Id =3;
+message NewAttachment {
+	int32 file_Id=1;
+	int32 note_Id =2;
 }
-
-message AttachmentResponse {
+message NewAttachmentData {
 	int32  id =1;
 	int32 file_Id=2;
 	int32 note_Id =3;
-	string created_at = 4;
-	
+	string created_at = 4;	
 }
-message GetAttachRequest{
+message EditAttachmentRequest {
+	int32 id=1;
+	int32 file_Id=2;
+	int32 note_Id =3;
+}
+message DeleteAttachmentRequest{
+	int32  id =1;
+}
+message DeleteAttachmentData{
+	bool   success = 1;
+    string message = 2;
+}
+message AttachDataRequest{
 	int32 id =1;
 }
+message AttachmentData{
+	int32 id =1;
+	FileData File=2;
+	NoteData note_Id =3;
+}
 
-message ListAllRequest{
+message ListAttachmentsRequest{
 
 }
-message ListAllResponse{
-	repeated AttachmentResponse Attachment =1;
+message ListAttachments{
+	repeated AttachmentData Attachment =1;
 
 }

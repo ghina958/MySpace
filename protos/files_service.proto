@@ -5,7 +5,11 @@ package my_space;
 
 service Files {
 
-	rpc CreateFile(CreatFile) returns(FileResponse);
-	rpc GetByIdFile(FileById) returns(FileResponse);
+	rpc Create(NewFile) returns(FileData);
+	rpc Edit(EditFileData) returns(FileData);
+	rpc Delete(DeleteFileDataRequest) returns(DeleteFileData);
+	
+	rpc GetById(FileDataRequest) returns(FileData);
+	rpc ListFiles(ListFileDataRequest) returns(ListFilesData);
 	
 }

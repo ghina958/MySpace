@@ -10,7 +10,6 @@ message Space{
 	string description=3;
 }
 
-
 message CreateSpaceRequest {
 	string name=2;	
 	string description=3;		

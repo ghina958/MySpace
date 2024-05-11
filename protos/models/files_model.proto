@@ -4,16 +4,33 @@ option csharp_namespace = "MySpace.Application.Files";
 
 package my_space;
 
-message CreatFile{
-	string Url=2;	
+message NewFile{
+	string Url=1;	
 }
-message FileResponse {
+message FileData {
 	int32  id =1;
 	string Url=2;
-	string created_at = 3;
+}
+message EditFileData {
+	int32  id =1;
+	string Url=2;
+}
+message DeleteFileDataRequest{
+	int32  id =1;
+}
+message DeleteFileData{
+	bool   success = 1;
+    string message = 2;
 }
 
-message FileById{
+message FileDataRequest{
     int32  id =1;	
+}
+message ListFileDataRequest{
+
+}
+message ListFilesData{
+	repeated EditFileData File =1;
+
 }
 

@@ -5,53 +5,40 @@ option csharp_namespace = "MySpace.Application.Category";
 import "models/space_model.proto";
 package my_space;
 
-message CreateCategoryRequest {
+message NewCategory {
 	string name=1;	
 	int32 space_id=2;
 }
-
-
-message CreateCategoryResponse {
+message CategoryData {
 	int32  id =1;
 	string name=2;	
 	int32 space_id=3;
 	string created_at = 4;	
 }
-
-message EditCategoryRequest {
+message EditCategory {
 	int32  id =1;
 	string name=2;	
 	int32 space_id=3;
-}
-
-message EditCategoryResponse {
-	int32  id =1;
-	string name=2;	
-	int32 space_id=3;
-	string created_at = 4;
 }
 message DeleteCategoryRequest{
 	int32  id =1;
 }
-message DeleteCategoryResponse{
+message DeleteCategory{
 	bool   success = 1;
     string message = 2;
 }
-
-message GetAllCategoriesRequest{
+message ListCategoriesRequest{
 	
 }
-message GetAllCategoriesResponse{
-	repeated GetByIdResponse Category =1;
+message ListCategories{
+	repeated OneCategoryData Category =1;
 }
-
-message GetByIdRequest {
+message CategoryDataRequest {
 	int32  id =1;	
 }
-
-message GetByIdResponse {
+message OneCategoryData {
 	int32  id =1;
 	string name=2;	
-	int32 space_id=3;
+	GetSpaceByIdResponse Space=3;
 }
 
