@@ -11,10 +11,10 @@ internal class FileService : Files.FilesBase
     {
         _mediator = mediator;
     }
-    //public override Task<FileResponse> CreateFile(CreatFile request, ServerCallContext context)
-    //{
-    //    return  _mediator.Send(request);
-    //}
+    public override Task<FileData> Create(NewFile request, ServerCallContext context)
+    {
+        return _mediator.Send(request);
+    }
     //public override async Task<FileResponse> GetByIdFile(FileById request, ServerCallContext context)
     //{
     //    return await _mediator.Send(request);
